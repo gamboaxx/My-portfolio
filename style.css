@@ -1,16 +1,26 @@
+/* -----------------------------------
+   🧱 ESTRUCTURA GENERAL DEL DOCUMENTO
+------------------------------------ */
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f0f4f8;
+  color: #333;
   margin: 0;
   padding: 0;
-  color: #333;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
+
+/* -----------------------------------
+   🧩 HEADER
+------------------------------------ */
 
 header {
   text-align: center;
   background-color: #3b82f6;
   color: white;
   padding: 2rem 1rem;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .perfil {
@@ -20,6 +30,10 @@ header {
   border: 3px solid white;
   margin-bottom: 1rem;
 }
+
+/* -----------------------------------
+   🧱 CONTENIDO PRINCIPAL
+------------------------------------ */
 
 main {
   padding: 2rem;
@@ -32,6 +46,7 @@ main {
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 h2 {
@@ -47,13 +62,84 @@ a:hover {
   text-decoration: underline;
 }
 
-footer {
-  text-align: center;
-  background: #e2e8f0;
-  padding: 1rem;
-  font-size: 0.9rem;
+/* -----------------------------------
+   📬 FORMULARIO DE CONTACTO
+------------------------------------ */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
 }
-/* Botón de modo oscuro */
+
+form input,
+form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+form button {
+  padding: 0.75rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+form button:hover {
+  background-color: #2563eb;
+}
+
+/* -----------------------------------
+   💬 EFECTO MÁQUINA DE ESCRIBIR
+------------------------------------ */
+
+.typing {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  min-height: 2.5rem;
+  transition: color 0.3s ease;
+  color: #1e293b; /* para modo claro */
+}
+
+body.oscuro .typing {
+  color: #60a5fa; /* para modo oscuro */
+}
+
+/* -----------------------------------
+   🔗 ICONOS DE REDES SOCIALES
+------------------------------------ */
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.socials a {
+  font-size: 1.8rem;
+  color: #3b82f6;
+  transition: color 0.3s ease;
+}
+
+.socials a:hover {
+  color: #2563eb;
+}
+
+/* -----------------------------------
+   🌗 BOTÓN DE MODO OSCURO
+------------------------------------ */
+
 #modo-toggle {
   position: fixed;
   top: 1rem;
@@ -73,7 +159,10 @@ footer {
   background-color: #e2e8f0;
 }
 
-/* Modo oscuro */
+/* -----------------------------------
+   🌑 MODO OSCURO (theme oscuro)
+------------------------------------ */
+
 body.oscuro {
   background-color: #1e1e1e;
   color: #eeeeee;
@@ -96,4 +185,16 @@ body.oscuro a {
 body.oscuro footer {
   background-color: #111827;
   color: #cccccc;
+}
+
+/* -----------------------------------
+   ⚓ FOOTER
+------------------------------------ */
+
+footer {
+  text-align: center;
+  background: #e2e8f0;
+  padding: 1rem;
+  font-size: 0.9rem;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }

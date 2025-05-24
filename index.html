@@ -5,16 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portafolio de Emmanuel</title>
     <link rel="stylesheet" href="style.css" />
+    <!-- Font Awesome para iconos sociales -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
   <body>
+    <!-- Botón de modo oscuro -->
     <button id="modo-toggle">🌙</button>
+
+    <!-- Encabezado -->
     <header>
       <img src="images/perfil.jpg" alt="Foto de perfil" class="perfil" />
       <h1>Emmanuel Gamboa</h1>
       <p>Desarrollador Web en formación | Apasionado por la tecnología</p>
+      <h2 class="typing"></h2>
     </header>
 
+    <!-- Contenido principal -->
     <main>
+      <!-- Sección de proyectos -->
       <section class="proyectos">
         <h2>Proyectos</h2>
         <ul>
@@ -24,31 +35,87 @@
         </ul>
       </section>
 
+      <!-- Sección de contacto con formulario -->
       <section class="contacto">
         <h2>Contacto</h2>
-        <p>Correo: gamboae730@gmail.com</p>
-        <p>LinkedIn: <a href="#">linkedin.com/in/emmanuelgamboa</a></p>
+        <form action="https://formspree.io/f/YOUR_CODE" method="POST">
+          <input type="text" name="name" placeholder="Tu nombre" required />
+          <input type="email" name="email" placeholder="Tu correo" required />
+          <textarea name="message" placeholder="Tu mensaje" required></textarea>
+          <button type="submit">Enviar mensaje</button>
+        </form>
+
+        <!-- Redes sociales -->
+        <div class="socials">
+          <a
+            href="https://github.com/gamboaxx"
+            target="_blank"
+            aria-label="GitHub"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/emmanuel-gamboa-b49611357/"
+            target="_blank"
+            aria-label="LinkedIn"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
       </section>
     </main>
 
+    <!-- Pie de página -->
     <footer>
       <p>© 2025 Emmanuel Gamboa. Todos los derechos reservados.</p>
     </footer>
+
+    <!-- Scripts -->
     <script>
+      // Modo oscuro
       const btn = document.getElementById("modo-toggle");
       const body = document.body;
-
-      // Cambia ícono y clase
       function toggleMode() {
         body.classList.toggle("oscuro");
-        if (body.classList.contains("oscuro")) {
-          btn.textContent = "☀️";
-        } else {
-          btn.textContent = "🌙";
+        btn.textContent = body.classList.contains("oscuro") ? "☀️" : "🌙";
+      }
+      btn.addEventListener("click", toggleMode);
+
+      // Efecto máquina de escribir
+      const texts = [
+        "Backend Developer",
+        "Java & C++ Programmer",
+        "Tech Enthusiast",
+      ];
+      let i = 0,
+        j = 0,
+        currentText = "",
+        isDeleting = false;
+      const el = document.querySelector(".typing");
+
+      function type() {
+        if (i < texts.length) {
+          if (!isDeleting && j <= texts[i].length) {
+            currentText = texts[i].substring(0, j++);
+            el.textContent = currentText;
+          }
+
+          if (isDeleting && j >= 0) {
+            currentText = texts[i].substring(0, j--);
+            el.textContent = currentText;
+          }
+
+          if (j === texts[i].length) isDeleting = true;
+          if (isDeleting && j === 0) {
+            isDeleting = false;
+            i = (i + 1) % texts.length;
+          }
+
+          setTimeout(type, isDeleting ? 60 : 120);
         }
       }
 
-      btn.addEventListener("click", toggleMode);
+      type();
     </script>
   </body>
 </html>
