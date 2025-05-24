@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portafolio de Emmanuel</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <button id="modo-toggle">🌙</button>
+    <header>
+      <img src="images/perfil.jpg" alt="Foto de perfil" class="perfil" />
+      <h1>Emmanuel Gamboa</h1>
+      <p>Desarrollador Web en formación | Apasionado por la tecnología</p>
+    </header>
+
+    <main>
+      <section class="proyectos">
+        <h2>Proyectos</h2>
+        <ul>
+          <li>Sitio de recetas con HTML/CSS</li>
+          <li>Calculadora web con JavaScript</li>
+          <li>Gestor de torneos (JavaFX + JSON)</li>
+        </ul>
+      </section>
+
+      <section class="contacto">
+        <h2>Contacto</h2>
+        <p>Correo: gamboae730@gmail.com</p>
+        <p>LinkedIn: <a href="#">linkedin.com/in/emmanuelgamboa</a></p>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Emmanuel Gamboa. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+      const btn = document.getElementById("modo-toggle");
+      const body = document.body;
+
+      // Cambia ícono y clase
+      function toggleMode() {
+        body.classList.toggle("oscuro");
+        if (body.classList.contains("oscuro")) {
+          btn.textContent = "☀️";
+        } else {
+          btn.textContent = "🌙";
+        }
+      }
+
+      btn.addEventListener("click", toggleMode);
+    </script>
+  </body>
+</html>

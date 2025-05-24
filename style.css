@@ -1,0 +1,99 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4f8;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+header {
+  text-align: center;
+  background-color: #3b82f6;
+  color: white;
+  padding: 2rem 1rem;
+}
+
+.perfil {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid white;
+  margin-bottom: 1rem;
+}
+
+main {
+  padding: 2rem;
+}
+
+.proyectos,
+.contacto {
+  background: white;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #3b82f6;
+}
+
+a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  background: #e2e8f0;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+/* Botón de modo oscuro */
+#modo-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background-color: #ffffffcc;
+  border: none;
+  border-radius: 50%;
+  padding: 0.5rem 0.7rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+#modo-toggle:hover {
+  background-color: #e2e8f0;
+}
+
+/* Modo oscuro */
+body.oscuro {
+  background-color: #1e1e1e;
+  color: #eeeeee;
+}
+
+body.oscuro header {
+  background-color: #111827;
+}
+
+body.oscuro .proyectos,
+body.oscuro .contacto {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+}
+
+body.oscuro a {
+  color: #60a5fa;
+}
+
+body.oscuro footer {
+  background-color: #111827;
+  color: #cccccc;
+}
