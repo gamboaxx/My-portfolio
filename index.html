@@ -75,15 +75,19 @@
 
     <!-- Scripts -->
     <script>
-      // Modo oscuro
       const btn = document.getElementById("modo-toggle");
       const body = document.body;
       const tooltip = document.getElementById("tooltip-text");
+
       function toggleMode() {
+        const isCurrentlyDark = body.classList.contains("oscuro");
+        const nextMode = isCurrentlyDark ? "Modo claro" : "Modo oscuro"; // al que se va a cambiar
+        tooltip.textContent = nextMode;
+
         body.classList.toggle("oscuro");
+
         const isDarkMode = body.classList.contains("oscuro");
         btn.textContent = isDarkMode ? "☀️" : "🌙";
-        tooltip.textContent = isDarkMode ? "Modo claro" : "Modo oscuro";
 
         // Mostrar tooltip manualmente SOLO en dispositivos táctiles
         const isTouchDevice =
@@ -98,6 +102,7 @@
           }, 2000);
         }
       }
+
       btn.addEventListener("click", toggleMode);
 
       // Efecto máquina de escribir
