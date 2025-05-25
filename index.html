@@ -79,27 +79,33 @@
       const body = document.body;
       const tooltip = document.getElementById("tooltip-text");
 
-      function toggleMode() {
-        const isCurrentlyDark = body.classList.contains("oscuro");
-        const nextMode = isCurrentlyDark ? "Modo claro" : "Modo oscuro"; // al que se va a cambiar
-        tooltip.textContent = nextMode;
+      // Detectar si el dispositivo es táctil
+      const isTouchDevice =
+        "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
-        body.classList.toggle("oscuro");
-
+      // Estado del modo actual
+      function updateUI() {
         const isDarkMode = body.classList.contains("oscuro");
         btn.textContent = isDarkMode ? "☀️" : "🌙";
+        tooltip.textContent = isDarkMode ? "Modo claro" : "Modo oscuro";
+      }
 
-        // Mostrar tooltip manualmente SOLO en dispositivos táctiles
-        const isTouchDevice =
-          "ontouchstart" in window || navigator.maxTouchPoints > 0;
+      function toggleMode() {
+        body.classList.toggle("oscuro");
+        updateUI();
 
         if (isTouchDevice) {
+          // Mostrar tooltip manualmente en móviles
           tooltip.style.opacity = "1";
           tooltip.style.transform = "translateX(-50%) translateY(0)";
+
           setTimeout(() => {
             tooltip.style.opacity = "0";
             tooltip.style.transform = "translateX(-50%) translateY(5px)";
           }, 2000);
+        } else {
+          // Limpiar estilos en desktop para que funcione el hover
+          tooltip.removeAttribute("style");
         }
       }
 
@@ -139,6 +145,8 @@
         }
       }
 
+      // Ejecutar al inicio
+      updateUI();
       type();
     </script>
   </body>
