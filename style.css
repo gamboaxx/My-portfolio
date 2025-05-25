@@ -137,13 +137,22 @@ body.oscuro .typing {
 }
 
 /* -----------------------------------
-   🌗 BOTÓN DE MODO OSCURO
+   🌗 BOTÓN DE MODO OSCURO + TOOLTIP
 ------------------------------------ */
 
-#modo-toggle {
+.modo-wrapper {
   position: fixed;
   top: 1rem;
-  right: 1rem;
+  right: 2.5rem;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#modo-toggle {
+  position: relative;
   background-color: #ffffffcc;
   border: none;
   border-radius: 50%;
@@ -152,13 +161,72 @@ body.oscuro .typing {
   cursor: pointer;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  z-index: 1000;
+  transform: rotate(0deg);
+  color: black;
 }
 
-#modo-toggle:hover {
-  background-color: #d1d5db; /* un poco más oscuro */
-  transform: scale(1.1);
+/* 🌞 Hover cuando se va a pasar a oscuro */
+body:not(.oscuro) #modo-toggle:hover {
+  background-color: #1e1e1e; /* anticipa modo oscuro */
+  color: white;
+  transform: scale(1.1) rotate(15deg);
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+/* 🌙 Hover cuando se va a pasar a claro */
+body.oscuro #modo-toggle:hover {
+  background-color: #ffffffcc; /* anticipa modo claro */
+  color: black;
+  transform: scale(1.1) rotate(195deg);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+/* 🔁 Estado base del botón en modo oscuro */
+body.oscuro #modo-toggle {
+  background-color: #1e1e1e;
+  color: white;
+  transform: rotate(180deg);
+}
+
+/* -----------------------------------
+   🧾 TOOLTIP PERSONALIZADO
+------------------------------------ */
+
+.tooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  max-width: 240px;
+  overflow: hidden;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid rgba(0, 0, 0, 0.85);
+}
+
+/* 👉 Mostrar tooltip al pasar el mouse */
+.modo-wrapper:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 /* -----------------------------------

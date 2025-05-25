@@ -13,7 +13,10 @@
   </head>
   <body>
     <!-- Botón de modo oscuro -->
-    <button id="modo-toggle">🌙</button>
+    <div class="modo-wrapper">
+      <button id="modo-toggle">🌙</button>
+      <span id="tooltip-text" class="tooltip">Modo oscuro</span>
+    </div>
 
     <!-- Encabezado -->
     <header>
@@ -75,9 +78,25 @@
       // Modo oscuro
       const btn = document.getElementById("modo-toggle");
       const body = document.body;
+      const tooltip = document.getElementById("tooltip-text");
       function toggleMode() {
         body.classList.toggle("oscuro");
-        btn.textContent = body.classList.contains("oscuro") ? "☀️" : "🌙";
+        const isDarkMode = body.classList.contains("oscuro");
+        btn.textContent = isDarkMode ? "☀️" : "🌙";
+        tooltip.textContent = isDarkMode ? "Modo claro" : "Modo oscuro";
+
+        // Mostrar tooltip manualmente SOLO en dispositivos táctiles
+        const isTouchDevice =
+          "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+        if (isTouchDevice) {
+          tooltip.style.opacity = "1";
+          tooltip.style.transform = "translateX(-50%) translateY(0)";
+          setTimeout(() => {
+            tooltip.style.opacity = "0";
+            tooltip.style.transform = "translateX(-50%) translateY(5px)";
+          }, 2000);
+        }
       }
       btn.addEventListener("click", toggleMode);
 
