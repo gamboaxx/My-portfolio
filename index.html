@@ -10,6 +10,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <!-- AOS Animations -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- Botón de modo oscuro -->
@@ -19,7 +24,7 @@
     </div>
 
     <!-- Encabezado -->
-    <header>
+    <header data-aos="fade-down">
       <img src="images/perfil.jpg" alt="Foto de perfil" class="perfil" />
       <h1>Emmanuel Gamboa</h1>
       <p>Desarrollador Web en formación | Apasionado por la tecnología</p>
@@ -29,7 +34,7 @@
     <!-- Contenido principal -->
     <main>
       <!-- Sección de proyectos -->
-      <section class="proyectos">
+      <section class="proyectos" data-aos="fade-up">
         <h2>Proyectos</h2>
         <ul>
           <li>Sitio de recetas con HTML/CSS</li>
@@ -39,9 +44,14 @@
       </section>
 
       <!-- Sección de contacto con formulario + redes sociales -->
-      <section class="contacto">
+      <section class="contacto" data-aos="zoom-in-up">
         <h2>Contacto</h2>
-        <form action="https://formspree.io/f/mldbygkl" method="POST">
+        <form
+          action="https://formspree.io/f/mldbygkl"
+          method="POST"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
           <input
             type="text"
             name="name"
@@ -83,7 +93,7 @@
           </p>
         </form>
 
-        <div class="socials">
+        <div class="socials" data-aos="fade-up" data-aos-delay="400">
           <a
             href="https://github.com/gamboaxx"
             target="_blank"
@@ -103,7 +113,7 @@
     </main>
 
     <!-- Pie de página -->
-    <footer>
+    <footer data-aos="fade" data-aos-delay="600">
       <p>© 2025 Emmanuel Gamboa. Todos los derechos reservados.</p>
     </footer>
 
@@ -113,11 +123,9 @@
       const body = document.body;
       const tooltip = document.getElementById("tooltip-text");
 
-      // Detectar si el dispositivo es táctil
       const isTouchDevice =
         "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
-      // Estado del modo actual
       function updateUI() {
         const isDarkMode = body.classList.contains("oscuro");
         btn.textContent = isDarkMode ? "☀️" : "🌙";
@@ -129,23 +137,19 @@
         updateUI();
 
         if (isTouchDevice) {
-          // Mostrar tooltip manualmente en móviles
           tooltip.style.opacity = "1";
           tooltip.style.transform = "translateX(-50%) translateY(0)";
-
           setTimeout(() => {
             tooltip.style.opacity = "0";
             tooltip.style.transform = "translateX(-50%) translateY(5px)";
           }, 2000);
         } else {
-          // Limpiar estilos en desktop para que funcione el hover
           tooltip.removeAttribute("style");
         }
       }
 
       btn.addEventListener("click", toggleMode);
 
-      // Efecto máquina de escribir
       const texts = [
         "Backend Developer",
         "Java & C++ Programmer",
@@ -176,7 +180,6 @@
         }
       }
 
-      // Ejecutar al inicio
       updateUI();
       type();
     </script>
@@ -197,6 +200,7 @@
         }).then((response) => {
           if (response.ok) {
             mensaje.style.display = "block";
+            mensaje.style.color = "green";
             form.reset();
           } else {
             mensaje.textContent = "❌ Error al enviar el mensaje.";
@@ -204,6 +208,14 @@
             mensaje.style.display = "block";
           }
         });
+      });
+    </script>
+    <!-- AOS Script -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        once: false, // 👉 se repite cada vez que el elemento entra en viewport
       });
     </script>
   </body>
