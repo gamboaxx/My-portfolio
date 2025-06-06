@@ -110,6 +110,16 @@
           </a>
         </div>
       </section>
+
+      <!-- Sección de estadísticas -->
+      <section class="estadisticas" data-aos="fade-up">
+        <h2>Actividad reciente</h2>
+        <p id="commit-count" class="contador">0</p>
+        <div class="barra">
+          <div id="commit-bar" class="relleno"></div>
+        </div>
+        <p id="commit-label">Cargando estadísticas...</p>
+      </section>
     </main>
 
     <!-- Pie de página -->
@@ -217,6 +227,51 @@
         duration: 1000,
         once: false, // 👉 se repite cada vez que el elemento entra en viewport
       });
+    </script>
+    <script>
+      async function fetchCommitCount() {
+        const numEl = document.getElementById("commit-count");
+        const barEl = document.getElementById("commit-bar");
+        const labelEl = document.getElementById("commit-label");
+        try {
+          const response = await fetch(
+            "https://api.github.com/users/gamboaxx/events/public"
+          );
+          if (!response.ok) throw new Error("Network error");
+          const events = await response.json();
+          const cutoff = new Date();
+          cutoff.setMonth(cutoff.getMonth() - 1);
+          let commits = 0;
+          events.forEach((ev) => {
+            if (ev.type === "PushEvent") {
+              const created = new Date(ev.created_at);
+              if (created >= cutoff) {
+                commits += ev.payload.commits.length;
+              }
+            }
+          });
+
+          if (commits === 0) {
+            numEl.textContent = 0;
+            barEl.style.width = "0%";
+            labelEl.textContent = "Sin commits en el último mes";
+            return;
+          }
+
+          labelEl.textContent = "Commits en el último mes";
+          let current = 0;
+          const interval = setInterval(() => {
+            current++;
+            numEl.textContent = current;
+            barEl.style.width = `${(current / commits) * 100}%`;
+            if (current >= commits) clearInterval(interval);
+          }, 40);
+        } catch (err) {
+          labelEl.textContent = "No se pudo obtener la estadística";
+        }
+      }
+
+      fetchCommitCount();
     </script>
   </body>
 </html>

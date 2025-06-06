@@ -40,13 +40,36 @@ main {
 }
 
 .proyectos,
-.contacto {
+.contacto,
+.estadisticas {
   background: white;
   margin-bottom: 2rem;
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.estadisticas .contador {
+  font-size: 2rem;
+  text-align: center;
+  margin: 0;
+}
+
+.estadisticas .barra {
+  position: relative;
+  background: #e5e7eb;
+  border-radius: 10px;
+  height: 20px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.estadisticas .relleno {
+  background: #3b82f6;
+  height: 100%;
+  width: 0;
+  transition: width 0.8s ease;
 }
 
 h2 {
@@ -243,9 +266,18 @@ body.oscuro header {
 }
 
 body.oscuro .proyectos,
-body.oscuro .contacto {
+body.oscuro .contacto,
+body.oscuro .estadisticas {
   background-color: #2d2d2d;
   color: #e0e0e0;
+}
+
+body.oscuro .estadisticas .barra {
+  background: #444;
+}
+
+body.oscuro .estadisticas .relleno {
+  background: #60a5fa;
 }
 
 body.oscuro a {

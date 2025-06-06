@@ -3,6 +3,11 @@
 A responsive and minimalistic portfolio website built with modern web standards, featuring a dark/light mode switch.  
 Hosted via **GitHub Pages** for easy access and sharing.
 
+### Features
+
+- Toggleable dark/light mode.
+- Animated display of your GitHub commits from the last month.
+
 ---
 
 ## 🛠️ Technologies & Languages
