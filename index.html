@@ -114,6 +114,11 @@
       <!-- Sección de estadísticas -->
       <section class="estadisticas" data-aos="fade-up">
         <h2>Actividad reciente</h2>
+        <p id="commit-count" class="contador">0</p>
+        <div class="barra">
+          <div id="commit-bar" class="relleno"></div>
+        </div>
+        <p id="commit-label">Cargando estadísticas...</p>
         <p id="commit-count">Cargando estadísticas...</p>
       </section>
     </main>
@@ -226,6 +231,9 @@
     </script>
     <script>
       async function fetchCommitCount() {
+        const numEl = document.getElementById("commit-count");
+        const barEl = document.getElementById("commit-bar");
+        const labelEl = document.getElementById("commit-label");
         const element = document.getElementById("commit-count");
         try {
           const response = await fetch(
@@ -244,12 +252,28 @@
               }
             }
           });
+          if (commits === 0) {
+            numEl.textContent = 0;
+            barEl.style.width = "0%";
+            labelEl.textContent = "Sin commits en el último mes";
+            return;
+          }
+
+          labelEl.textContent = "Commits en el último mes";
+          let current = 0;
+          const interval = setInterval(() => {
+            current++;
+            numEl.textContent = current;
+            barEl.style.width = `${(current / commits) * 100}%`;
+            if (current >= commits) clearInterval(interval);
+          }, 40);
+        } catch (err) {
+          labelEl.textContent = "No se pudo obtener la estadística";
           element.textContent = `${commits} commits en el último mes`;
         } catch (err) {
           element.textContent = "No se pudo obtener la estadística";
         }
       }
-
       fetchCommitCount();
     </script>
   </body>
