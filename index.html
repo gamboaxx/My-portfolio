@@ -119,6 +119,7 @@
           <div id="commit-bar" class="relleno"></div>
         </div>
         <p id="commit-label">Cargando estadísticas...</p>
+        <p id="commit-count">Cargando estadísticas...</p>
       </section>
     </main>
 
@@ -233,6 +234,7 @@
         const numEl = document.getElementById("commit-count");
         const barEl = document.getElementById("commit-bar");
         const labelEl = document.getElementById("commit-label");
+        const element = document.getElementById("commit-count");
         try {
           const response = await fetch(
             "https://api.github.com/users/gamboaxx/events/public"
@@ -250,7 +252,6 @@
               }
             }
           });
-
           if (commits === 0) {
             numEl.textContent = 0;
             barEl.style.width = "0%";
@@ -268,9 +269,11 @@
           }, 40);
         } catch (err) {
           labelEl.textContent = "No se pudo obtener la estadística";
+          element.textContent = `${commits} commits en el último mes`;
+        } catch (err) {
+          element.textContent = "No se pudo obtener la estadística";
         }
       }
-
       fetchCommitCount();
     </script>
   </body>

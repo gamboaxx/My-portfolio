@@ -7,6 +7,7 @@ Hosted via **GitHub Pages** for easy access and sharing.
 
 - Toggleable dark/light mode.
 - Animated display of your GitHub commits from the last month.
+- Displays the total commits made on GitHub during the last month.
 
 ---
 
