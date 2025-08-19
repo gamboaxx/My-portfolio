@@ -4,11 +4,12 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f4f8;
-  color: #333;
+  background-color: #fafafa;
+  color: #2c2c2c;
   margin: 0;
   padding: 0;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* -----------------------------------
@@ -17,18 +18,31 @@ body {
 
 header {
   text-align: center;
-  background-color: #3b82f6;
+  background-color: #2563eb;
   color: white;
-  padding: 2rem 1rem;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  padding: 3rem 1rem;
+  transition: background-color 0.3s ease;
 }
 
 .perfil {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  border: 3px solid white;
-  margin-bottom: 1rem;
+  border: 2px solid white;
+  margin-bottom: 1.5rem;
+  object-fit: cover;
+}
+
+header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.2rem;
+  font-weight: 400;
+}
+
+header p {
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.9;
 }
 
 /* -----------------------------------
@@ -37,52 +51,87 @@ header {
 
 main {
   padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .proyectos,
 .contacto,
 .estadisticas {
   background: white;
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.4s ease, color 0.4s ease;
+  margin-bottom: 2.5rem;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .estadisticas .contador {
-  font-size: 2rem;
+  font-size: 2.5rem;
   text-align: center;
   margin: 0;
+  font-weight: 300;
+  color: #2563eb;
 }
 
 .estadisticas .barra {
   position: relative;
-  background: #e5e7eb;
-  border-radius: 10px;
-  height: 20px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  height: 8px;
   overflow: hidden;
-  margin-top: 0.5rem;
+  margin: 1rem 0;
 }
 
 .estadisticas .relleno {
-  background: #3b82f6;
+  background: #2563eb;
   height: 100%;
   width: 0;
-  transition: width 0.8s ease;
+  transition: width 0.6s ease;
 }
 
 h2 {
-  color: #3b82f6;
+  color: #1f2937;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
 }
 
 a {
   color: #2563eb;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: #1d4ed8;
+}
+
+/* -----------------------------------
+   📝 PROJECT LIST STYLING
+------------------------------------ */
+
+.proyectos ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.proyectos li {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 1rem;
+  color: #4b5563;
+}
+
+.proyectos li:last-child {
+  border-bottom: none;
+}
+
+body.oscuro .proyectos li {
+  border-bottom-color: #374151;
+  color: #d1d5db;
 }
 
 /* -----------------------------------
@@ -92,8 +141,8 @@ a:hover {
 form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  max-width: 500px;
+  gap: 1.2rem;
+  max-width: 450px;
   margin: 0 auto;
 }
 
@@ -101,23 +150,43 @@ form input,
 form textarea {
   width: 100%;
   box-sizing: border-box;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  padding: 0.8rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 100px;
 }
 
 form button {
-  padding: 0.75rem;
-  background-color: #3b82f6;
+  padding: 0.8rem;
+  background-color: #2563eb;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
 }
 
 form button:hover {
-  background-color: #2563eb;
+  background-color: #1d4ed8;
+}
+
+form button:active {
+  transform: translateY(1px);
 }
 
 /* -----------------------------------
@@ -126,16 +195,15 @@ form button:hover {
 
 .typing {
   text-align: center;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.3rem;
+  font-weight: 400;
   margin-top: 1rem;
-  min-height: 2.5rem;
-  transition: color 0.5s ease;
-  color: #1e293b; /* para modo claro */
+  min-height: 2rem;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 body.oscuro .typing {
-  color: #60a5fa; /* para modo oscuro */
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* -----------------------------------
@@ -145,18 +213,19 @@ body.oscuro .typing {
 .socials {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .socials a {
-  font-size: 1.8rem;
-  color: #3b82f6;
-  transition: color 0.3s ease;
+  font-size: 1.5rem;
+  color: #6b7280;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .socials a:hover {
   color: #2563eb;
+  transform: translateY(-2px);
 }
 
 /* -----------------------------------
@@ -165,8 +234,8 @@ body.oscuro .typing {
 
 .modo-wrapper {
   position: fixed;
-  top: 1rem;
-  right: 2.5rem;
+  top: 1.5rem;
+  right: 1.5rem;
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -176,39 +245,29 @@ body.oscuro .typing {
 
 #modo-toggle {
   position: relative;
-  background-color: #ffffffcc;
-  border: none;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-  padding: 0.5rem 0.7rem;
-  font-size: 1.2rem;
+  padding: 0.6rem;
+  font-size: 1.1rem;
   cursor: pointer;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-  transform: rotate(0deg);
-  color: black;
+  transition: all 0.2s ease;
+  color: #374151;
 }
 
-/* 🌞 Hover cuando se va a pasar a oscuro */
-body:not(.oscuro) #modo-toggle:hover {
-  background-color: #1e1e1e; /* anticipa modo oscuro */
-  color: white;
-  transform: scale(1.1) rotate(15deg);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+#modo-toggle:hover {
+  background-color: #f3f4f6;
+  transform: scale(1.05);
 }
 
-/* 🌙 Hover cuando se va a pasar a claro */
-body.oscuro #modo-toggle:hover {
-  background-color: #ffffffcc; /* anticipa modo claro */
-  color: black;
-  transform: scale(1.1) rotate(195deg);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
-}
-
-/* 🔁 Estado base del botón en modo oscuro */
 body.oscuro #modo-toggle {
-  background-color: #1e1e1e;
-  color: white;
-  transform: rotate(180deg);
+  background-color: rgba(55, 65, 81, 0.9);
+  color: #f9fafb;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.oscuro #modo-toggle:hover {
+  background-color: #4b5563;
 }
 
 /* -----------------------------------
@@ -220,36 +279,19 @@ body.oscuro #modo-toggle {
   top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.85);
-  color: #fff;
-  padding: 6px 12px;
-  font-size: 0.8rem;
-  border-radius: 8px;
+  background-color: rgba(55, 65, 81, 0.9);
+  color: #f9fafb;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.75rem;
+  border-radius: 4px;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  max-width: 240px;
-  overflow: hidden;
-  text-align: center;
-  box-sizing: border-box;
+  transition: opacity 0.2s ease;
 }
 
-.tooltip::after {
-  content: "";
-  position: absolute;
-  top: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-bottom: 6px solid rgba(0, 0, 0, 0.85);
-}
-
-/* 👉 Mostrar tooltip al pasar el mouse */
 .modo-wrapper:hover .tooltip {
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
 }
 
 /* -----------------------------------
@@ -257,23 +299,32 @@ body.oscuro #modo-toggle {
 ------------------------------------ */
 
 body.oscuro {
-  background-color: #1e1e1e;
-  color: #eeeeee;
+  background-color: #111827;
+  color: #e5e7eb;
 }
 
 body.oscuro header {
-  background-color: #111827;
+  background-color: #1f2937;
 }
 
 body.oscuro .proyectos,
 body.oscuro .contacto,
 body.oscuro .estadisticas {
-  background-color: #2d2d2d;
-  color: #e0e0e0;
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #e5e7eb;
+}
+
+body.oscuro h2 {
+  color: #f3f4f6;
+}
+
+body.oscuro .estadisticas .contador {
+  color: #60a5fa;
 }
 
 body.oscuro .estadisticas .barra {
-  background: #444;
+  background: #374151;
 }
 
 body.oscuro .estadisticas .relleno {
@@ -284,9 +335,26 @@ body.oscuro a {
   color: #60a5fa;
 }
 
+body.oscuro a:hover {
+  color: #93c5fd;
+}
+
+body.oscuro form input,
+body.oscuro form textarea {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #e5e7eb;
+}
+
+body.oscuro form input:focus,
+body.oscuro form textarea:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
 body.oscuro footer {
-  background-color: #111827;
-  color: #cccccc;
+  background-color: #1f2937;
+  color: #9ca3af;
 }
 
 /* -----------------------------------
@@ -295,8 +363,38 @@ body.oscuro footer {
 
 footer {
   text-align: center;
-  background: #e2e8f0;
-  padding: 1rem;
+  background: #f3f4f6;
+  padding: 2rem 1rem;
   font-size: 0.9rem;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  color: #6b7280;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* -----------------------------------
+   📱 RESPONSIVE DESIGN
+------------------------------------ */
+
+@media (max-width: 768px) {
+  main {
+    padding: 1rem;
+  }
+  
+  .proyectos,
+  .contacto,
+  .estadisticas {
+    padding: 1.5rem;
+  }
+  
+  header {
+    padding: 2rem 1rem;
+  }
+  
+  header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .modo-wrapper {
+    top: 1rem;
+    right: 1rem;
+  }
 }
